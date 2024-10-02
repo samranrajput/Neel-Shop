@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    {% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">     {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'styles/css/owl.carousel.min.css' %}"> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'styles/css/all.min.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'styles/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/css/layout.css' %}">
+    <title>Dairy Products | {% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    <script src="{% static 'styles/js/jquery.js' %}"></script>
+    <script src="{% static 'styles/js/drop_down.js' %}"></script>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-success">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="{% static 'images/logos/Neel.png' %}" width="50" height="40"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if request.user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a></li>
+            <li class="nav-item active dropdown"><a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{% url 'category' 'CR' %}">Curd</a></li>
+                <li><a class="dropdown-item" href="{% url 'category' 'ML' %}">Milk</a></li>
+                <li><a class="dropdown-item" href="{% url 'category' 'LS' %}">Lassi</a></li>
+                <li><a class="dropdown-item" href="{% url 'category' 'MS' %}">Milk Shake</a></li>
+                <li><a class="dropdown-item" href="{% url 'category' 'PN' %}">Paneer</a></li>
+                <li><a class="dropdown-item" href="{% url 'category' 'GH' %}">Ghee</a></li>
+                <li><a class="dropdown-item" href="{% url 'category' 'CZ' %}">Cheese</a></li>
+                <li><a class="dropdown-item" href="{% url 'category' 'IC' %}">Ice Creams</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link text-light" href="{% url 'about' %}">About Us</a></li>
+            <li class="nav-item"><a class="nav-link text-light" href="{% url 'contact' %}">Contact Us</a></li>
+          </ul>
+          <form class="d-flex w-50 m-auto" role="search" action="{% url 'search' %}">
+            <input class="form-control me-2" type="search" placeholder="Search" name='search' aria-label="Search">
+            <button class="btn btn-warning" type="submit">Search</button>
+          </form>
+        </div>
+        <li class="nav-item mx-2"><a href="{% url 'show_cart' %}" class="nav-link text-light"><i class="fa-solid fa-cart-shopping text-info fa-lg"></i> <span class="badge bg-dark">{{ total_cart }}</span></a></li>
+        <li class="nav-item mx-2"><a href="{% url 'wishlist' %}" class="nav-link text-light"><i class="fas fa-heart text-danger fa-lg"></i> <span class="badge bg-dark">{{ wishlist_total }}</span></a></li>
+          <li class="nav-item active dropdown"><a class="nav-link dropdown-toggle text-light mx-5" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request.user }}</a>
+          <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        {% else %}
+          <li class="nav-item mx-2"><a href="{% url 'login' %}" class="nav-link text-light">Login</a></li>
+          <li class="nav-item mx-2"><a href="{% url 'sign_up' %}" class="nav-link text-light">Sign Up</a></li>
+        {% endif %}
+        </li>
+      </div>
+    </nav>
+    {% block banner %}{% endblock banner %}
+    {% block information %}{% endblock information %}
+    {% block content %}{% endblock content %}
+    <script src="{% static 'styles/js/all.min.js' %}"></script>
+    {% comment %} <script src="{% static 'styles/js/owl.carousel.min.js' %}"></script> {% endcomment %}
+    <script src="{% static 'styles\js\script.js' %}"></script>
+    {% comment %} <script src="{% static 'styles/jquery.js' %}"></script> {% endcomment %}
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> {% endcomment %}
+    <footer class="fixed-bottom container-fluid bg-success text-light text-center p-2 mt-5">Copy right : 2024 || Develop by : Muhammad Samran</footer>
+  </body>
+</html>

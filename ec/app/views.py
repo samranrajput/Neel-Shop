@@ -12,7 +12,6 @@ from django.utils.decorators import method_decorator
 def home(request):
     if request.user.is_authenticated:
         wishlist_total = len(Wishlist.objects.all())
-
         total_cart = len(Cart.objects.filter(user=request.user))
     return render(request, 'home.html', locals())
 

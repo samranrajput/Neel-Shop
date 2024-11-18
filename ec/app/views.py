@@ -99,7 +99,6 @@ def profile(request):
 def address(request):
     if request.user.is_authenticated:
         wishlist_total = len(Wishlist.objects.all())
-
         total_cart = len(Cart.objects.filter(user=request.user))
     add = Customer.objects.filter(user=request.user)
     messages.success(request,'Congratulations! Profile Save Successfully')

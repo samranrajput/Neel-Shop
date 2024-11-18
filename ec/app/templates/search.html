@@ -2,12 +2,12 @@
 {% load static %}
 {% block title %}Search Result{% endblock title %}
 {% block content %}
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="row">
+    <div class="w-100">
+        <div class="">
+            <div class="col-sm-8 w-100 m-auto">
+                <div class="row w-100 m-auto">
                     {% for prod in product %}
-                        <div class="col-sm-4 text-center mb-4 hover-shadow">
+                        <div class="col-sm-4 w-25 text-center m-5 shadow-lg">
                             <a href="{% url 'product_detail' prod.id %}" class="btn">
                                 <div>
                                     <img src="{{prod.product_image.url}}" width="300px" height="200px">
@@ -23,5 +23,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div><br><br><br>
 {% endblock content %}

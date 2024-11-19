@@ -1,0 +1,6 @@
+Neel-Shop>py -m venv env                                              (Open Command Prompt Create Environment)    
+Neel-Shop>cd env
+Neel-Shop\env>cd Scripts                                              (Environment Activate)
+Neel-Shop\env\Scripts>activate
+(env) Neel-Shop\env\Scripts>cd../..
+(env) Neel-Shop>pip install -r pakege_install.txt                     (Install Pakeges)

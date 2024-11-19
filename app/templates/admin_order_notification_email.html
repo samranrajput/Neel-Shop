@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Order Notification</title>
+</head>
+<body>
+    <h2>New Order from {{ user.username }}</h2>
+    <p>Order Details:</p>
+    <table border="1">
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+        {% for item in order_details %}
+        <tr>
+            <td>{{ item.product }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p>Total Amount: Rs. {{ total_amount }}</p>
+    <p>Please prepare the order for shipment.</p>
+</body>
+</html>
